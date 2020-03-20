@@ -24,4 +24,4 @@ Dependecies:
     
 ## Installation from Windows:
 
-![GitHub All Releases](https://img.shields.io/github/downloads/Magistr-Y0da/RemoteUnixTerminal/total?label=download)
+![GitHub Releases](https://img.shields.io/github/downloads/Magistr-Y0da/RemoteUnixTerminal/v1.0/total)
