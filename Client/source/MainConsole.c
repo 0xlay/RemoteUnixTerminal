@@ -42,7 +42,7 @@ int16_t Main_Console(HWND MainConsoleClient, const char *login, const char *pass
     }
     fclose(fl_logo_client_console);
 
-    fl_settings = fopen("../settings", "r");
+    fl_settings = fopen(PATH_SETTINGS, "r");
     if (fl_settings != NULL) {
         fscanf(fl_settings, "%s", current_ip);
         fscanf(fl_settings, "%s", current_port);
@@ -57,6 +57,8 @@ int16_t Main_Console(HWND MainConsoleClient, const char *login, const char *pass
 
     AllocConsole();
     ShowWindow(MainConsoleClient, SW_SHOW);
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
     SetConsoleTitleW(MAIN_CONSOLE_CLIENT_NAME);
     system("CLS");
     wprintf(L"%s\n", LogoClientConsole);
@@ -66,6 +68,15 @@ int16_t Main_Console(HWND MainConsoleClient, const char *login, const char *pass
     WSADATA wsa_data;
     SOCKET server_socket;
     SOCKADDR_IN addr_server;
+
+    char client_buff[1024];
+    ssize_t len_fl = 0;
+    ssize_t read_bytes = 0, write_bytes = 0;
+
+
+    HANDLE hOutFile = NULL, hOutFileMapping = NULL;
+    HANDLE hConsole;
+    LPVOID lpMapViewOutFile = NULL;
 
     WORD dll_ver = MAKEWORD(2, 2); // NOLINT(hicpp-signed-bitwise)
     if (WSAStartup(dll_ver, &wsa_data) != 0) {
@@ -82,8 +93,6 @@ int16_t Main_Console(HWND MainConsoleClient, const char *login, const char *pass
                     L"Failed created connection socket...",
                     NULL,
                     MESSAGE_BOX_ERROR_STYLE);
-        //WSACleanup();
-        //exit(WSAGetLastError());
         JUMP(Cleanup);
     }
 
@@ -97,22 +106,9 @@ int16_t Main_Console(HWND MainConsoleClient, const char *login, const char *pass
                     L"Failed connect to server...",
                     NULL,
                     MESSAGE_BOX_ERROR_STYLE);
-        //WSACleanup();
-        //exit(WSAGetLastError());
         JUMP(Cleanup);
     }
-
-
-    char client_buff[1024];
-    ssize_t len_fl = 0;
-    ssize_t read_bytes = 0, write_bytes = 0;
-
-
-    HANDLE hOutFile = NULL, hOutFileMapping = NULL;
-    HANDLE hConsole;
-    LPVOID lpMapViewOutFile = NULL;
-
-
+    Sleep(100);
     write_bytes = send_all(server_socket, login, strlen(login), 0);
     if (write_bytes < 0) JUMP(Cleanup);
 
@@ -148,7 +144,6 @@ int16_t Main_Console(HWND MainConsoleClient, const char *login, const char *pass
             system("CLS");
             continue;
         }
-        // TODO: Перехватывать команду пинг и производить ёё на клиенте а не на сервере if(ping)
 
         if (strncmp(client_buff, "ping", 4) == 0) {
             if (strcmp(client_buff, "ping --server") == 0) {
@@ -169,7 +164,6 @@ int16_t Main_Console(HWND MainConsoleClient, const char *login, const char *pass
         if (read_bytes < 0) break;
         len_fl = atoll(client_buff); // NOLINT(cert-err34-c)
 
-        // Created buffer
         hOutFile = CreateFile(PATH_CLIENT_OUTPUT,
                               CLIENT_OUTPUT_FILE_FLAGS,
                               0,
@@ -205,6 +199,7 @@ int16_t Main_Console(HWND MainConsoleClient, const char *login, const char *pass
 
     Cleanup:
     ShowWindow(MainConsoleClient, SW_HIDE);
+    DeleteFile(PATH_CLIENT_OUTPUT);
     if (hOutFile != NULL) CloseHandle(hOutFile);
     if (hOutFileMapping != NULL) CloseHandle(hOutFileMapping);
     if (lpMapViewOutFile != NULL) UnmapViewOfFile(lpMapViewOutFile);

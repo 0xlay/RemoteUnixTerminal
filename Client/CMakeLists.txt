@@ -7,7 +7,7 @@ set(CMAKE_C_STANDARD 11)
 
 add_compile_options(
         -Wall
-        # -Wextra
+        -Wextra
         -Wpedantic
 )
 

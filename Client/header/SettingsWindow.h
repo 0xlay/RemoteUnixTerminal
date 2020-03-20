@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 extern int SettingsWindow(HWND hwnd, HINSTANCE hInstance);
-extern long WINAPI ChildProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam);
+extern LRESULT ChildProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam);
 
 #define MM_TO_PIXEL 3.793627
 #define MAIN_SETTINGS_WINDOW_WIDTH 220
@@ -58,5 +58,7 @@ extern long WINAPI ChildProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lPa
 #define MAIN_SETTINGS_WINDOW_NAME "Settings"
 #define LABEL_IP "IP Address"
 #define LABEL_PORT "Port"
+
+#define PATH_SETTINGS "../data/settings"
 
 #endif //CLIENT_SETTINGSWINDOW_H

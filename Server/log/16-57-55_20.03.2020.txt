@@ -1,0 +1,5 @@
+[Server]=> Client connected successfully...
+[16:58:07]<->[Client]=> pwd
+[16:58:10]<->[Client]=> ls
+[16:58:11]<->[Client]=> neofetch
+[Server]=> Failed read message: Success

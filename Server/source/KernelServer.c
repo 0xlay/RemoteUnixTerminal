@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
 // $File: KernelServer.c $
 // $Date: 20.01.2020 $
-// $Revision: 03.03.2020 $
+// $Revision: 20.03.2020 $
 // $Creator: Magistr_Y0da $
 // ----------------------------------------------------------------------------
 #include "../header/KernelServer.h"
@@ -112,14 +112,13 @@ int main(int argc, char** argv) {
 
     if (bind(listener_socket, 
         (struct sockaddr *)&addr_server, 
-        sizeof(addr_server)) < 0) { // связываем сокет с адресом
+        sizeof(addr_server)) < 0) {
         write_log(log_file, 2, 
         "[Server]=> Failed bind socket: ", strerror(errno));
         JUMP(ServerClean);
     } 
 
-    // Установка соиденения
-    listen(listener_socket, SOMAXCONN); // Максимальное количество запросов на соиденение
+    listen(listener_socket, SOMAXCONN);
     connection_socket = accept(listener_socket, 
                               (struct sockaddr *)&addr_client, 
                               &size_addr_client);
@@ -172,7 +171,7 @@ int main(int argc, char** argv) {
         JUMP(ServerClean);
     }
 
-    // Установка директории по умолчанию
+    // Default Directory
     strcpy(cd.default_path, getenv("HOME"));
     chdir(cd.default_path);
     
@@ -251,8 +250,7 @@ int main(int argc, char** argv) {
             continue;
         }
 
-        fstat(out_file, &info_file);// Узнаем размер файла.
-        // test
+        fstat(out_file, &info_file);
         if ((size_t)info_file.st_size == 0) {
             bytes_write = send_data(connection_socket, 
                                     "Successfully completed...\n", 0);
@@ -285,6 +283,7 @@ int main(int argc, char** argv) {
     }
 
     ServerClean:
+    remove(PATH_CUSTOM_OUTPUT);
     if (log_file != 0) close(log_file);
     if (out_file != 0) close(out_file);
     if (listener_socket != 0) close(listener_socket);
@@ -330,7 +329,7 @@ ssize_t send_data(int fd, const char * data, int flags) {
     char buff[33];
     ssize_t bytes_write;
     ssize_t len_msg;
-    sprintf(buff, "%d", strlen(data));
+    sprintf(buff, "%ld", strlen(data));
 
     len_msg = strlen(buff);
     while(len_msg) {

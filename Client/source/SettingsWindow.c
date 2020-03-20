@@ -26,7 +26,7 @@ int SettingsWindow(HWND hwnd, HINSTANCE hInstance) {
     wnd_SettingsWindow.hIcon = LoadIcon(NULL, IDI_APPLICATION);
     wnd_SettingsWindow.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
     wnd_SettingsWindow.style = WND_SETTINGS_WINDOW_STYLE;
-    wnd_SettingsWindow.lpfnWndProc = ChildProc;
+    wnd_SettingsWindow.lpfnWndProc = (WNDPROC)ChildProc;
     wnd_SettingsWindow.hInstance = hInstance;
     wnd_SettingsWindow.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wnd_SettingsWindow.lpszClassName = MAIN_SETTINGS_WINDOW_CLASSNAME;
@@ -84,7 +84,7 @@ int SettingsWindow(HWND hwnd, HINSTANCE hInstance) {
     return msg.wParam;
 }
 
-long WINAPI ChildProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
+LRESULT ChildProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
     switch (uMessage)
     {
         case WM_DESTROY:
@@ -158,7 +158,7 @@ long WINAPI ChildProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
 
                 GetWindowTextA(edit_ip, new_ip, 16);
                 GetWindowTextA(edit_port, new_port, 6);
-                FILE *fl_settings = fopen("../settings", "w");
+                FILE *fl_settings = fopen(PATH_SETTINGS, "w");
                 fprintf(fl_settings, "%s\n", new_ip);
                 fprintf(fl_settings, "%s\n", new_port);
                 fclose(fl_settings);

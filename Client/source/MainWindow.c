@@ -5,8 +5,8 @@
 // $Creator: Magistr_Y0da $
 // ----------------------------------------------------------------------------
 
-#include "../header/MainWindow.h"
 #include "../header/MainConsole.h"
+#include "../header/MainWindow.h"
 #include "../header/SettingsWindow.h"
 #include "../resources/Resources.h"
 
@@ -16,7 +16,6 @@ static HWND edit_login;
 static HWND edit_password;
 static HWND button_settings;
 static HWND button_connect;
-static HWND button_disconnect;
 static HWND MainWindowClient;
 static HWND MainConsoleClient;
 static HINSTANCE Main_Instance;
@@ -28,7 +27,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     WNDCLASSEX wnd_MainWindowClient;
     RECT rect_MainWindowClient;
     Main_Instance = hInstance;
-
+    
 
     memset(&wnd_MainWindowClient, 0, sizeof(WNDCLASSEX));
     wnd_MainWindowClient.cbSize = sizeof(WNDCLASSEX);
@@ -36,7 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     wnd_MainWindowClient.hIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(IDI_MAIN_ICON32), IMAGE_ICON, 32, 32, 0);
     wnd_MainWindowClient.hIconSm = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(IDI_MAIN_ICON16), IMAGE_ICON, 16, 16, 0);
     wnd_MainWindowClient.style = WND_MAIN_WINDOW_CLIENT_STYLE;
-    wnd_MainWindowClient.lpfnWndProc = WndProc;
+    wnd_MainWindowClient.lpfnWndProc = (WNDPROC)WndProc;
     wnd_MainWindowClient.hInstance = hInstance;
     wnd_MainWindowClient.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wnd_MainWindowClient.lpszClassName = MAIN_WINDOW_CLIENT_CLASSNAME;
@@ -70,11 +69,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     uint16_t y_pos = rect_MainWindowClient.bottom - rect_MainWindowClient.top;
 
     MoveWindow(MainWindowClient,
-               (h_size - x_pos) / 2,
-               (v_size - y_pos) / 2,
-               MAIN_WINDOW_CLIENT_WIDTH,
-               MAIN_WINDOW_CLIENT_HEIGHT,
-               TRUE);
+                (h_size - x_pos) / 2,
+                (v_size - y_pos) / 2,
+                MAIN_WINDOW_CLIENT_WIDTH,
+                MAIN_WINDOW_CLIENT_HEIGHT,
+                TRUE);
 
 
             /* Hide console */
@@ -96,7 +95,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 }
 
 
-long WINAPI WndProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
+LRESULT WndProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
     switch (uMessage)
     {
         case WM_DESTROY:
@@ -107,16 +106,12 @@ long WINAPI WndProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
         case WM_PAINT:
             hdc_WndProc = BeginPaint(hwnd, &paint_struct);
 
-            TextOut(hdc_WndProc,
-                    (MAIN_WINDOW_CLIENT_WIDTH / 2) - 50, 100,
-                    LABEL_LOGIN, sizeof(LABEL_LOGIN));
-            TextOut(hdc_WndProc,
-                    (MAIN_WINDOW_CLIENT_WIDTH / 2) - 63, 160,
-                    LABEL_PASS, sizeof(LABEL_PASS));
-            TextOut(hdc_WndProc,
-                    (MAIN_WINDOW_CLIENT_WIDTH / 2) - 90, 430,
-                    LABEL_COPYRIGHT, sizeof(LABEL_COPYRIGHT));
-
+            TextOutW(hdc_WndProc,
+                    (MAIN_WINDOW_CLIENT_WIDTH / 2.0) - (wcslen(LABEL_LOGIN) * 4), 60,
+                    LABEL_LOGIN, wcslen(LABEL_LOGIN));
+            TextOutW(hdc_WndProc,
+                    (MAIN_WINDOW_CLIENT_WIDTH / 2.0) - (wcslen(LABEL_PASS) * 4), 110,
+                    LABEL_PASS, wcslen(LABEL_PASS));
             EndPaint(hwnd, &paint_struct);
             break;
 
@@ -124,8 +119,8 @@ long WINAPI WndProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
             edit_login = CreateWindow("EDIT",
                                       "",
                                       EDIT_LOGIN_CLIENT_STYLE,
-                                      115,
-                                      120,
+                                      65,
+                                      80,
                                       EDIT_LOGIN_CLIENT_WIDTH,
                                       EDIT_LOGIN_CLIENT_HEIGHT,
                                       hwnd,
@@ -138,8 +133,8 @@ long WINAPI WndProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
             edit_password = CreateWindow("EDIT",
                                       "",
                                       EDIT_PASSWORD_CLIENT_STYLE,
-                                      115,
-                                      180,
+                                      65,
+                                      130,
                                       EDIT_PASSWORD_CLIENT_WIDTH,
                                       EDIT_PASSWORD_CLIENT_HEIGHT,
                                       hwnd,
@@ -152,8 +147,8 @@ long WINAPI WndProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
             button_settings = CreateWindow("BUTTON",
                                           "Settings",
                                            BUTTON_SETTINGS_CLIENT_STYLE,
-                                           115,
-                                           210,
+                                           65,
+                                           160,
                                            BUTTON_SETTINGS_CLIENT_WIDTH,
                                            BUTTON_SETTINGS_CLIENT_HEIGHT,
                                            hwnd,
@@ -166,8 +161,8 @@ long WINAPI WndProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
             button_connect = CreateWindow("BUTTON",
                                           "Connect",
                                           BUTTON_CONNECT_CLIENT_STYLE,
-                                          115,
-                                          260,
+                                          65,
+                                          210,
                                           BUTTON_CONNECT_CLIENT_WIDTH,
                                           BUTTON_CONNECT_CLIENT_HEIGHT,
                                           hwnd,
@@ -176,28 +171,12 @@ long WINAPI WndProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
                                           NULL);
             if (button_connect == INVALID_HANDLE_VALUE) { return EXIT_FAILURE; }
             ShowWindow(button_connect, SW_SHOWNORMAL);
-
-            button_disconnect = CreateWindow("BUTTON",
-                                             "Disconnect",
-                                             BUTTON_DISCONNECT_CLIENT_STYLE,
-                                             115,
-                                             310,
-                                             BUTTON_DISCONNECT_CLIENT_WIDTH,
-                                             BUTTON_DISCONNECT_CLIENT_HEIGHT,
-                                             hwnd,
-                                             NULL,
-                                             ((LPCREATESTRUCT)lParam)->hInstance,
-                                             NULL);
-            if (button_disconnect == INVALID_HANDLE_VALUE) { return EXIT_FAILURE; }
-            ShowWindow(button_disconnect, SW_SHOWNORMAL);
-            EnableWindow(button_disconnect, FALSE);
             break;
 
         case WM_COMMAND:
             if (lParam == (LPARAM)button_settings) {
                 EnableWindow(button_settings, FALSE);
                 EnableWindow(button_connect, FALSE);
-                EnableWindow(button_disconnect, FALSE);
 
                 SettingsWindow(hwnd, Main_Instance);
 
@@ -207,28 +186,19 @@ long WINAPI WndProc(HWND hwnd, UINT uMessage, WPARAM wParam, LPARAM lParam) {
             if (lParam == (LPARAM)button_connect) {
                 EnableWindow(button_connect, FALSE);
                 EnableWindow(button_settings, FALSE);
-                EnableWindow(button_disconnect, TRUE);
                 ShowWindow(MainWindowClient, SW_MINIMIZE);
-                // Console
+
                 char login[50];
                 char password[50];
                 GetWindowTextA(edit_login, login, 50);
                 GetWindowTextA(edit_password, password, 50);
-                //int16_t code_error = Main_Console(MainConsoleClient, login, password);
-                //if (code_error == -7) {
+
+                ShowWindow(MainWindowClient, SW_HIDE);
                 Main_Console(MainConsoleClient, login, password);
+                
                 ShowWindow(MainWindowClient, SW_SHOWNORMAL);
-                EnableWindow(button_disconnect, FALSE);
                 EnableWindow(button_connect, TRUE);
                 EnableWindow(button_settings, TRUE);
-                //}
-            }
-            if (lParam == (LPARAM)button_disconnect) {
-                EnableWindow(button_disconnect, FALSE);
-                EnableWindow(button_connect, TRUE);
-                EnableWindow(button_settings, TRUE);
-                system("CLS");
-                ShowWindow(MainConsoleClient, SW_HIDE);
             }
             break;
 

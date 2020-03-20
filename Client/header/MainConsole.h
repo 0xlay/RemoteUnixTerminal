@@ -8,11 +8,11 @@
 #ifndef CLIENT_MAINCONSOLE_H
 #define CLIENT_MAINCONSOLE_H
 
+#include <winsock2.h>
 #include <windows.h>
 #include <tchar.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <winsock2.h>
 
 extern int16_t Main_Console(HWND MainConsoleClient, const char *login, const char *password);
 
@@ -24,6 +24,7 @@ extern ssize_t recv_all(SOCKET s, char * buf, ssize_t len, int flags);
 #define MAIN_CONSOLE_CLIENT_NAME L"RemoteUnixTerminal(Client)"
 #define PATH_LOGO_CLIENT_CONSOLE "../decor/LogoClientConsole"
 #define PATH_CLIENT_OUTPUT "../data/client_output"
+#define PATH_SETTINGS "../data/settings"
 
 #define MESSAGE_BOX_ERROR_STYLE ( (unsigned)MB_OK | \
                                   (unsigned)MB_ICONERROR | \
