@@ -1,7 +1,7 @@
 # RemoteUnixTerminal
 RemoteUnixTerminal - Windows Client and UNIX Server
 
-![](https://github.com/Magistr-Y0da/RemoteUnixTerminal/readme_pictures/MainConsole.png)
+![](https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/MainConsole.PNG)
 
 System requirements(Client):
 OS: Windows 10 1604 and later
