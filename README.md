@@ -61,3 +61,5 @@ In order to connect to the server, go to settings and indicate ip and port.
 
 ![](https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/MainWindow.PNG)
 ![](https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/SettingsWindow.PNG)
+
+## Author: Magistr_Y0da
