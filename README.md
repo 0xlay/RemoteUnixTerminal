@@ -1,13 +1,17 @@
-# :arrow_double_down:  :computer:RemoteUnixTerminal:computer: :arrow_double_down:
+<h1 align="center">:arrow_double_down:  :computer:RemoteUnixTerminal:computer: :arrow_double_down:</h1>
 
 ![](https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/MainConsole.PNG)
 
-## RemoteUnixTerminal - Windows Client and UNIX Server
+<h2 align="center">:arrow_double_down: RemoteUnixTerminal - Windows Client and UNIX Server :arrow_double_down:</h2>
 
-System requirements(Client):
+### About: :pencil:
+
+This program allows you to organize remote access to a computer terminal(Linux).
+
+### System requirements(Client): :telephone_receiver:
 OS: Windows 10 1604 and later
 
-System requirements(Server):
+### System requirements(Server): :computer:
 OS: Gentoo Linux,
     Arch Linux,
     Debian Linux.
@@ -59,7 +63,9 @@ Default "Server Port": 65322. (Doesn't change.)
 
 In order to connect to the server, go to settings and indicate ip and port.
 
-![](https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/MainWindow.PNG)
-![](https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/SettingsWindow.PNG)
+<p align="center"> 
+<img src="https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/MainWindow.PNG">
+<img src="https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/SettingsWindow.PNG">
+</p>
 
-## Author: Magistr_Y0da
+### Author: Magistr_Y0da
