@@ -1,6 +1,6 @@
 <h1 align="center">:arrow_double_down:  :computer:RemoteUnixTerminal:computer: :arrow_double_down:</h1>
 
-![](https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/MainConsole.PNG)
+![](https://github.com/0xlay/RemoteUnixTerminal/blob/master/readme_pictures/MainConsole.PNG)
 
 <h2 align="center">:arrow_double_down: RemoteUnixTerminal - Windows Client and UNIX Server :arrow_double_down:</h2>
 
@@ -21,14 +21,14 @@ Dependecies:
 - CMake https://cmake.org/download/
 - Python3 https://www.python.org/downloads/
 
-1. ```git clone https://github.com/Magistr-Y0da/RemoteUnixTerminal.git```
+1. ```git clone https://github.com/0xlay/RemoteUnixTerminal.git```
 2. ```rm -R Client && rm -R readme_pictures && cd Server```
 3. Build project =>  ```python3 ./Build.py```
 4. Launch Server =>  ```./Server_RemoteUnixTerminal```
     
 ## Installation from Windows: :mag_right:
 
-[![GitHub Releases](https://img.shields.io/github/downloads/Magistr-Y0da/RemoteUnixTerminal/v1.0/total)](https://github.com/Magistr-Y0da/RemoteUnixTerminal/releases/tag/v1.0)
+[![GitHub Releases](https://img.shields.io/github/downloads/0xlay/RemoteUnixTerminal/v1.0/total)](https://github.com/0xlay/RemoteUnixTerminal/releases/tag/v1.0)
 
 - Binary files:
 
@@ -64,8 +64,8 @@ Default "Server Port": 65322. (Doesn't change.)
 In order to connect to the server, go to settings and indicate ip and port.
 
 <p align="center"> 
-<img src="https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/MainWindow.PNG">
-<img src="https://github.com/Magistr-Y0da/RemoteUnixTerminal/blob/master/readme_pictures/SettingsWindow.PNG">
+<img src="https://github.com/0xlay/RemoteUnixTerminal/blob/master/readme_pictures/MainWindow.PNG">
+<img src="https://github.com/0xlay/RemoteUnixTerminal/blob/master/readme_pictures/SettingsWindow.PNG">
 </p>
 
-### Author: Magistr_Y0da
+### Author: 0xlay

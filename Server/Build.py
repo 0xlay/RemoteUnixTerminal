@@ -2,7 +2,7 @@
 # $File: Build.py for compile project $
 # $Date: 20.01.2020 $
 # $Revision: 20.01.2020 $
-# $Creator: Magistr_Y0da $
+# $Creator: 0xlay $
 # ----------------------------------------------------------------------------
 import os
 

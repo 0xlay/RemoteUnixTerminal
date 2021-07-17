@@ -2,7 +2,7 @@
 // $File: MainWindow.h $
 // $Date: 02.01.2020 $
 // $Revision: 02.01.2020 $
-// $Creator: Magistr_Y0da $
+// $Creator: 0xlay $
 // ----------------------------------------------------------------------------
 
 #ifndef CLIENT_MAINCONSOLE_H

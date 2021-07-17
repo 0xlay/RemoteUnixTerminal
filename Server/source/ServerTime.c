@@ -2,7 +2,7 @@
 // $File: ServerTime.c $
 // $Date: 07.02.2020 $
 // $Revision: 07.02.2020 $
-// $Creator: Magistr_Y0da $
+// $Creator: 0xlay $
 // ----------------------------------------------------------------------------
 #include "../header/ServerTime.h"
 

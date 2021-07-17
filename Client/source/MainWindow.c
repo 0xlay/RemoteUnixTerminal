@@ -2,7 +2,7 @@
 // $File: MainWindow.c $
 // $Date: 30.12.2019 $
 // $Revision: 05.01.2020 $
-// $Creator: Magistr_Y0da $
+// $Creator: 0xlay $
 // ----------------------------------------------------------------------------
 
 #include "../header/MainConsole.h"

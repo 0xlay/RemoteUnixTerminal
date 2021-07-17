@@ -1,5 +1,5 @@
 //
-// Created by Mojes on 08.02.2020.
+// Created by 0xlay on 08.02.2020.
 //
 
 #ifndef CLIENT_RESOURCES_H
@@ -15,7 +15,7 @@
 #define VER_PRODUCT_STR                 "1.0\0"
 
 #define PRODUCT_NAME_STR                 "RemoteUnixTerminal"
-#define COMPANY_NAME_STR                 "Magistr_Y0da"
+#define COMPANY_NAME_STR                 "0xlay"
 #define ORIGINAL_FILENAME_STR            "Client_RemoteUnixTerminal"
 #define DESCRIPTION_STR                  "Linux terminal remote access application"
 

@@ -2,7 +2,7 @@
 // $File: SettingsWindow.h $
 // $Date: 05.01.2020 $
 // $Revision: 05.01.2020 $
-// $Creator: Magistr_Y0da $
+// $Creator: 0xlay $
 // ----------------------------------------------------------------------------
 
 #ifndef CLIENT_SETTINGSWINDOW_H

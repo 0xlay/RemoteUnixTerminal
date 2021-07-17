@@ -2,7 +2,7 @@
 // $File: ServerTime.h $
 // $Date: 07.02.2020 $
 // $Revision: 07.02.2020 $
-// $Creator: Magistr_Y0da $
+// $Creator: 0xlay $
 // ----------------------------------------------------------------------------
 
 #ifndef SERVER_TIME_H

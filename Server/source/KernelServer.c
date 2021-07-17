@@ -2,7 +2,7 @@
 // $File: KernelServer.c $
 // $Date: 20.01.2020 $
 // $Revision: 20.03.2020 $
-// $Creator: Magistr_Y0da $
+// $Creator: 0xlay $
 // ----------------------------------------------------------------------------
 #include "../header/KernelServer.h"
 

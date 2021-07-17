@@ -2,7 +2,7 @@
 // $File: servercd.h $
 // $Date: 18.02.2020 $
 // $Revision: 18.02.2020 $
-// $Creator: Magistr_Y0da $
+// $Creator: 0xlay $
 // ----------------------------------------------------------------------------
 
 #ifndef SERVERCD_H

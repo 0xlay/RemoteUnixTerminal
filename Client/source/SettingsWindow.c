@@ -2,7 +2,7 @@
 // $File: SettingsWindow.c $
 // $Date: 05.01.2020 $
 // $Revision: 05.01.2020 $
-// $Creator: Magistr_Y0da $
+// $Creator: 0xlay $
 // ----------------------------------------------------------------------------
 
 #include "../header/SettingsWindow.h"
